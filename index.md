@@ -1,9 +1,11 @@
 ---
 layout: default
-title: Alehkot
+title: Aleh Kot
 ---
 
-# Hi there
+# Aleh Kot
+
+GitHub: [@alehkot](https://github.com/alehkot)
 
 Some of my latest GitHub repos:
 
