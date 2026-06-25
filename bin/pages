@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+if [ -x /opt/homebrew/opt/ruby@3.3/bin/ruby ]; then
+  export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+fi
+
+ruby -e 'abort "Ruby 3.x is required for the GitHub Pages gem set. Install it with: brew install ruby@3.3" unless RUBY_VERSION.start_with?("3.")'
+
+bundle config set path vendor/bundle >/dev/null
+
+case "${1:-build}" in
+  install)
+    bundle install
+    ;;
+  build)
+    bundle check || bundle install
+    bundle exec jekyll build
+    ;;
+  serve)
+    bundle check || bundle install
+    bundle exec jekyll serve --baseurl=""
+    ;;
+  clean)
+    bundle exec jekyll clean
+    ;;
+  *)
+    echo "Usage: bin/pages [install|build|serve|clean]" >&2
+    exit 64
+    ;;
+esac
