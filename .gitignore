@@ -4,3 +4,7 @@ _site/
 vendor/bundle/
 .jekyll-cache/
 .jekyll-metadata
+
+# Woodpecker build logs and test artifacts
+/.ci-output/
+/.ci/__pycache__/
